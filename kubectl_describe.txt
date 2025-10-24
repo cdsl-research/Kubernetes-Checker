@@ -1,0 +1,8 @@
+Status:           Running
+Events:
+  Type     Reason     Age                 From               Message
+  ----     ------     ----                ----               -------
+  Normal   Scheduled  117s                default-scheduler  Successfully assigned monitoring/prometheus-backup-29187618-54d9v to monitoring-worker1
+  Warning  Failed     70s (x4 over 113s)  kubelet            Error: failed to create containerd task: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: "/home/monitoring/prometheus-backup/prometheus-backup.sh": stat /home/monitoring/prometheus-backup/prometheus-backup.sh: no such file or directory: unknown
+  Normal   Pulled     70s                 kubelet            Successfully pulled image "c0a22169d8/backup-prometheus:latest" in 1.294s (1.294s including waiting). Image size: 3643355 bytes.
+  Warning  BackOff    43s (x7 over 110s)  kubelet            Back-off restarting failed container prometheus-backup in pod prometheus-backup-29187618-54d9v_monitoring(95534006-402a-4285-8e55-8dd9491195c1)

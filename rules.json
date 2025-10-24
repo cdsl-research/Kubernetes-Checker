@@ -1,0 +1,24 @@
+[
+  {
+    "id": "missing_file",
+    "name": "ファイルが見つからない (no such file or directory)",
+    "pattern": "stat (/?[^\\s:]+): no such file or directory",
+    "finder": "path_in_args",
+    "template": "YAMLファイルの{line}行目に記述されている {content} が原因である可能性があります．"
+  },
+  {
+    "id": "exec_failed",
+    "name": "実行ファイルの実行に失敗 (exec)",
+    "pattern": "exec: \\\"([^\\\"]+)\\\": (.*)",
+    "finder": "path_in_args",
+    "template": "YAMLファイルの{line}行目に記述されている {content} が原因である可能性があります．"
+  },
+  {
+    "id": "backoff",
+    "name": "Back-off restarting failed container / CrashLoopBackOff",
+    "pattern": "(Back-off restarting failed container|BackOff|CrashLoopBackOff)",
+    "finder": "general",
+    "template": "Podが繰り返し再起動しており，{content} に関連する設定に問題がある可能性があります．"
+  }
+]
+

@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: prometheus-backup
+spec:
+  #schedule: "0 3 * * *"
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: prometheus-backup
+            image: c0a22169d8/backup-prometheus:latest
+            args:
+            - "/home/monitoring/prometheus-backup/prometheus-backup.sh"
+          restartPolicy: OnFailure
