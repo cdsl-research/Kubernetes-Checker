@@ -4,8 +4,6 @@ KubernetesのYAMLファイルと `kubectl describe` の出力を照合し，設�
 
 ## 構成ファイル
 
-このリポジトリには以下のファイルが含まれています：
-
 | ファイル名 | 説明 |
 |-----------|------|
 | `exam.yaml` | CronJobのYAML定義。Prometheusのバックアップジョブを1分ごとに実行。 |
