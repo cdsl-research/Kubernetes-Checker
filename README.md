@@ -36,9 +36,12 @@ python3 k8s_rule_checker3.py exam.yaml kubectl_describe.txt
 ## 出力例
 
 ```text
-  9             - "/home/monitoring/prometheus-backup/prometheus-backup.sh"
+14            image: c0a22169d8/backup-prometheus:latest
+15            args:
+16            - "/home/monitoring/prometheus-backup/prometheus-backup.sh"
+17          restartPolicy: OnFailure
 
-YAMLファイルの9行目に記述されている /home/monitoring/prometheus-backup/prometheus-backup.sh が原因である可能性があります．
+YAMLファイルの16行目に記述されている - "/home/monitoring/prometheus-backup/prometheus-backup.sh" が原因である可能性があります．
 ```
 
 ## 実装のポイント
