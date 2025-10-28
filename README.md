@@ -45,7 +45,7 @@ YAMLファイルの16行目に記述されている - "/home/monitoring/promethe
 ## 実装のポイント
 
 - `rules.json` に定義された正規表現で `kubectl describe` の出力を解析。
-- 該当するパスやキーワードを `exam.yaml` から検索し、行番号と周辺コンテキストを表示。
+- 該当するパスやキーワードを `exam.yaml` から検索し、エラーの原因箇所とされる前後2行の行番号とコンテキストを表示。
 - 直接的な原因（`missing_file`, `exec_failed`）が見つかった場合は、`backoff` のような副次的なエラーは除外して表示。
 
 ## 注意事項
