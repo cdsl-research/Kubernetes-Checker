@@ -1,7 +1,7 @@
 # Kubernetes-Checker
 
 ```markdown
-# 🛠️ Kubernetes YAML Rule Checker
+# Kubernetes YAML Rule Checker
 
 KubernetesのCronJob設定ファイル（YAML）と `kubectl describe` の出力を照合し、障害の原因となりうる設定ミスを特定するPythonスクリプトです。
 
