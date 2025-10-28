@@ -17,7 +17,7 @@ KubernetesのYAMLファイルと `kubectl describe` の出力を照合し，設�
 python3 k8s_rule_checker3.py <yamlファイル> <kubectl-describe出力ファイル> [rules.json]
 ```
 
-例：
+▼使用例▼
 
 ```bash
 python3 k8s_rule_checker3.py exam.yaml kubectl_describe.txt
