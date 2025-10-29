@@ -4,18 +4,19 @@ KubernetesのYAMLファイルと `kubectl describe` の出力を照合し，設�
 
 ## 使用しているライブラリとPythonのバージョン
 ▼使用しているライブラリ▼
-'''
+```
 linux-vdso.so.1 (0x00007fffbc1dd000)
         libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000079824ca39000)
         libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x000079824ca1d000)
         libexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x000079824c9f1000)
         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000079824c600000)
         /lib64/ld-linux-x86-64.so.2 (0x000079824cb2a000)
-'''
+```
+
 ▼Pythonのバージョン▼
-'''
+```
 Python 3.12.3
-'''
+```
 
 ## 構成ファイル
 
