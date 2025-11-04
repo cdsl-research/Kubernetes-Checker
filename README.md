@@ -6,13 +6,6 @@ KubernetesのYAMLファイルと `kubectl describe` の出力を照合し，設�
 - OS：Ubuntu 24.04.2 LTS
 - Python：3.12.3
 
-
-## Pythonライブラリ
-- sys
-- re
-- json
-- pathlib.Path
-
 ## 構成ファイル
 
 | ファイル名 | 説明 |
