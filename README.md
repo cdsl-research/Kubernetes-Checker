@@ -36,18 +36,8 @@ python3 k8s_rule_checker3.py exam.yaml kubectl_describe.txt
 | `backoff` | コンテナの再起動失敗 | `Back-off` や `CrashLoopBackOff` に一致し、再起動ループの原因を推定します。 |
 
 ## 出力例
+<img width="1519" height="165" alt="スクリーンショット 2025-11-04 163704" src="https://github.com/user-attachments/assets/9958b966-7126-4f11-9ea0-b64803754cc6" />
 
-```text
-c0a22103@c0a22103-practice:~/software3$ python3 k8s_rule_checker3.py exam.yaml kubectl_describe.txt
- 14             image: c0a22169d8/backup-prometheus:latest
- 15             args:
- 16             - "/home/monitoring/prometheus-backup/prometheus-backup.sh"
- 17           restartPolicy: OnFailure
-
-YAMLファイルの16行目に記述されている - "/home/monitoring/prometheus-backup/prometheus-backup.sh" が原因である可能性があります．
-
-c0a22103@c0a22103-practice:~/software3$
-```
 
 ## 実装のポイント
 
