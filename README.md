@@ -2,21 +2,16 @@
 
 KubernetesのYAMLファイルと `kubectl describe` の出力を照合し，設定ミスを特定するPythonスクリプトです．
 
-## 使用しているライブラリとPythonのバージョン
-▼使用しているライブラリ▼
-```
-linux-vdso.so.1 (0x00007fffbc1dd000)
-        libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000079824ca39000)
-        libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x000079824ca1d000)
-        libexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x000079824c9f1000)
-        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000079824c600000)
-        /lib64/ld-linux-x86-64.so.2 (0x000079824cb2a000)
-```
+## 開発環境
+- OS：Ubuntu 24.04.2 LTS
+- Python：3.12.3
 
-▼Pythonのバージョン▼
-```
-Python 3.12.3
-```
+
+## Pythonライブラリ
+- sys
+- re
+- json
+- pathlib.Path
 
 ## 構成ファイル
 
@@ -50,12 +45,15 @@ python3 k8s_rule_checker3.py exam.yaml kubectl_describe.txt
 ## 出力例
 
 ```text
-14            image: c0a22169d8/backup-prometheus:latest
-15            args:
-16            - "/home/monitoring/prometheus-backup/prometheus-backup.sh"
-17          restartPolicy: OnFailure
+c0a22103@c0a22103-practice:~/software3$ python3 k8s_rule_checker3.py exam.yaml kubectl_describe.txt
+ 14             image: c0a22169d8/backup-prometheus:latest
+ 15             args:
+ 16             - "/home/monitoring/prometheus-backup/prometheus-backup.sh"
+ 17           restartPolicy: OnFailure
 
 YAMLファイルの16行目に記述されている - "/home/monitoring/prometheus-backup/prometheus-backup.sh" が原因である可能性があります．
+
+c0a22103@c0a22103-practice:~/software3$
 ```
 
 ## 実装のポイント
