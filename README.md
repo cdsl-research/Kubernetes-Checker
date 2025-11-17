@@ -1,6 +1,6 @@
 # Kubernetes-Checker
 
-KubernetesのYAMLファイルと `kubectl describe` の出力を照合し，設定ミスを特定するPythonスクリプトです．
+KubernetesのYAMLファイルと `kubectl describe` の出力を照合し，設定ミスを特定するPythonスクリプトである．
 
 ## 開発環境
 - OS：Ubuntu 24.04.2 LTS
@@ -31,9 +31,9 @@ python3 k8s_rule_checker3.py exam.yaml kubectl_describe.txt
 
 | ID | 名前 | 説明 |
 |----|------|------|
-| `missing_file` | ファイルが見つからない | `no such file or directory` エラーに一致し，YAML内の該当パスを特定します． |
-| `exec_failed` | 実行ファイルの実行に失敗 | `exec:` エラーに一致し，実行対象のスクリプトパスを特定します． |
-| `backoff` | コンテナの再起動失敗 | `Back-off` や `CrashLoopBackOff` に一致し，再起動ループの原因を推定します． |
+| `missing_file` | ファイルが見つからない | `no such file or directory` エラーに一致し，YAML内の該当パスを特定する． |
+| `exec_failed` | 実行ファイルの実行に失敗 | `exec:` エラーに一致し，実行対象のスクリプトパスを特定する． |
+| `backoff` | コンテナの再起動失敗 | `Back-off` や `CrashLoopBackOff` に一致し，再起動ループの原因を推定する． |
 
 ## 出力例
 - k8s_rule_checker3.py スクリプトを用いて，Kubernetesの設定ファイル exam.yaml と kubectl_describe.txt を検証した結果は，YAMLファイルの16行目に記述された args のスクリプトパスがエラーの原因箇所であることを表している．
