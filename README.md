@@ -36,15 +36,15 @@ python3 k8s_rule_checker3.py exam.yaml kubectl_describe.txt
 | `backoff` | コンテナの再起動失敗 | `Back-off` や `CrashLoopBackOff` に一致し，再起動ループの原因を推定します． |
 
 ## 出力例
-- k8s_rule_checker3.py スクリプトを用いて，Kubernetesの設定ファイル exam.yaml と kubectl_describe.txt を検証した結果は，YAMLファイルの16行目に記述された args のスクリプトパスが原因であることが出力されている．
-- Pod内のファイル構成と一致していない or 実行権限がない理由により，コンテナ起動時にスクリプトが正しく実行されない．
+- k8s_rule_checker3.py スクリプトを用いて，Kubernetesの設定ファイル exam.yaml と kubectl_describe.txt を検証した結果は，YAMLファイルの16行目に記述された args のスクリプトパスがエラーの原因箇所であることを表している．
+- Pod内のファイル構成と一致していないまたは実行権限がない理由により，コンテナ起動時にスクリプトを実行できない．
 <img width="1519" height="165" alt="スクリーンショット 2025-11-04 163704" src="https://github.com/user-attachments/assets/9958b966-7126-4f11-9ea0-b64803754cc6" />
 
 ▼16行目の正しい記述▼
 ```
 16       - "/prometheus-backup.sh"
 ```
-- コンテナ内のルートディレクトリに配置されたスクリプトを指定する形式が正しいため，Dockerfileやイメージ構成に応じて正しいパスを指定する必要がある．
+コンテナ内のルートディレクトリに配置されたスクリプトを指定する形式が正しいため，Dockerfileやイメージ構成に応じて正しいパスを指定する必要がある．
 
 
 ## 実装のポイント
