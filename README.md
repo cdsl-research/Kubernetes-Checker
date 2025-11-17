@@ -10,10 +10,10 @@ KubernetesのYAMLファイルと `kubectl describe` の出力を照合し，設�
 
 | ファイル名 | 説明 |
 |-----------|------|
-| `exam.yaml` | CronJobのYAML定義。Prometheusのバックアップジョブを1分ごとに実行。 |
-| `kubectl_describe.txt` | `kubectl describe` の出力例。コンテナ起動失敗やBackOffエラーを含む。 |
-| `rules.json` | エラーパターンと対応する検出ルールを定義したJSONファイル。 |
-| `k8s_rule_checker3.py` | YAMLとdescribe出力を照合し、ルールに基づいて問題箇所を抽出するPythonスクリプト。 |
+| `exam.yaml` | CronJobのYAML定義．Prometheusのバックアップジョブを1分ごとに実行． |
+| `kubectl_describe.txt` | `kubectl describe` の出力例．コンテナ起動失敗やBackOffエラーを含む． |
+| `rules.json` | エラーパターンと対応する検出ルールを定義したJSONファイル． |
+| `k8s_rule_checker3.py` | YAMLとdescribe出力を照合し，ルールに基づいて問題箇所を抽出するPythonスクリプト． |
 
 ## 使用方法
 
@@ -31,16 +31,24 @@ python3 k8s_rule_checker3.py exam.yaml kubectl_describe.txt
 
 | ID | 名前 | 説明 |
 |----|------|------|
-| `missing_file` | ファイルが見つからない | `no such file or directory` エラーに一致し、YAML内の該当パスを特定します。 |
-| `exec_failed` | 実行ファイルの実行に失敗 | `exec:` エラーに一致し、実行対象のスクリプトパスを特定します。 |
-| `backoff` | コンテナの再起動失敗 | `Back-off` や `CrashLoopBackOff` に一致し、再起動ループの原因を推定します。 |
+| `missing_file` | ファイルが見つからない | `no such file or directory` エラーに一致し，YAML内の該当パスを特定します． |
+| `exec_failed` | 実行ファイルの実行に失敗 | `exec:` エラーに一致し，実行対象のスクリプトパスを特定します． |
+| `backoff` | コンテナの再起動失敗 | `Back-off` や `CrashLoopBackOff` に一致し，再起動ループの原因を推定します． |
 
 ## 出力例
+- k8s_rule_checker3.py スクリプトを用いて，Kubernetesの設定ファイル exam.yaml と kubectl_describe.txt を検証した結果は，YAMLファイルの16行目に記述された args のスクリプトパスが原因であることが出力されている．
+- Pod内のファイル構成と一致していない or 実行権限がない理由により，コンテナ起動時にスクリプトが正しく実行されない．
 <img width="1519" height="165" alt="スクリーンショット 2025-11-04 163704" src="https://github.com/user-attachments/assets/9958b966-7126-4f11-9ea0-b64803754cc6" />
+
+▼16行目の正しい記述▼
+```
+16       - "/prometheus-backup.sh"
+```
+- コンテナ内のルートディレクトリに配置されたスクリプトを指定する形式が正しいため，Dockerfileやイメージ構成に応じて正しいパスを指定する必要がある．
 
 
 ## 実装のポイント
 
-- `rules.json` に定義された正規表現で `kubectl describe` の出力を解析。
-- 該当するパスやキーワードを `exam.yaml` から検索し、エラーの原因箇所とされる前後2行の行番号とコンテキストを表示。
-- 直接的な原因（`missing_file`, `exec_failed`）が見つかった場合は、`backoff` のような副次的なエラーは除外して表示。
+- `rules.json` に定義された正規表現で `kubectl describe` の出力を解析．
+- 該当するパスやキーワードを `exam.yaml` から検索し，エラーの原因箇所とされる前後2行の行番号とコンテキストを表示．
+- 直接的な原因（`missing_file`, `exec_failed`）が見つかった場合は，`backoff` のような副次的なエラーは除外して表示．
